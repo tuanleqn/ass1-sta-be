@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from api.test import test_api
 from api.peer import peer_api
+from api.torrent import torrent_api
 
 def create_app():
     APP_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -13,6 +14,7 @@ def create_app():
     CORS(app)
     app.register_blueprint(test_api)
     app.register_blueprint(peer_api)
+    app.register_blueprint(torrent_api)
 
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')

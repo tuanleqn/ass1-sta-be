@@ -9,6 +9,7 @@ MONGODB_URI = os.getenv("MONGODB_URI")
 client = MongoClient(MONGODB_URI)
 db = client['myVirtualDatabase']
 peer_collection = db['peer']
+torrent_collection = db['torrent']
 
 def add_peer(peer_name, password, status, ip_address, port):
     peer_id = str(uuid.uuid4())  # Tạo peer_id duy nhất
@@ -94,3 +95,30 @@ def is_peer_active(peer_id):
     else:
         print(f"Peer {peer_id} is not active.")
         return False
+
+def add_torrent(torrent_name, file_path, peer_ip, peer_port):
+    torrent_id = str(uuid.uuid4())
+    with open(file_path, 'r') as file:
+        text_content = file.read()
+    torrent_data = {
+        "torrent_id": torrent_id,
+        "torrent_name": torrent_name,
+        "peer_ip": peer_ip,
+        "peer_port": peer_port,
+        "text_content": text_content
+    }
+    try:
+        torrent_collection.insert_one(torrent_data)
+        print("Torrent added successfully with torrent_id:", torrent_id)
+        return torrent_data['torrent_id']
+    except Exception as e:
+        print(f"Error adding torrent: {e}")
+
+def get_all_torrents_file_content():
+    torrents = list(torrent_collection.find({}, {'text_content': 1}))
+    if torrents:
+        print(f"Retrieved content for {len(torrents)} torrents.")
+        return torrents
+    else:
+        print("No torrents found.")
+        return []
