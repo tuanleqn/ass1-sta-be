@@ -96,7 +96,7 @@ def is_peer_active(peer_id):
         print(f"Peer {peer_id} is not active.")
         return False
 
-def add_torrent(torrent_name, file_path, peer_ip, peer_port):
+def add_torrent(torrent_name, peer_ip, peer_port, file_path):
     torrent_id = str(uuid.uuid4())
     with open(file_path, 'r') as file:
         text_content = file.read()
@@ -122,3 +122,7 @@ def get_all_torrents_file_content():
     else:
         print("No torrents found.")
         return []
+
+def delete_all_torrents():
+    result = torrent_collection.delete_many({})
+    print(f"{result.deleted_count} torrents deleted successfully.")

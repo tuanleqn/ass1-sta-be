@@ -8,6 +8,7 @@ CORS(torrent_api)
 ''' @ torrent api docs
 POST /api/torrent/add: Thêm một torrent mới. Dữ liệu yêu cầu: torrent_name, file_path, peer_ip, peer_port.
 GET /api/torrent/content: Lấy nội dung của tất cả các torrent.
+GET /api/torrent/delete: Xóa tất cả các torrent.
 '''
 
 @torrent_api.route('/add', methods=['POST'])
@@ -30,3 +31,8 @@ def get_all_torrent_content():
     for torrent in torrents:
         torrent['_id'] = str(torrent['_id'])
     return jsonify(torrents), 200
+
+@torrent_api.route('/delete', methods=['DELETE'])
+def delete_all_torrents_file():
+    delete_all_torrents()
+    return jsonify({"message": "All torrents deleted successfully."}), 200
