@@ -28,8 +28,8 @@ def add_peer(peer_name, password, status, ip_address, port):
     except Exception as e:
         print(f"Error adding peer: {e}")
 
-def attach_torrent_file_to_peer(peer_id, file_path):
-    with open(file_path, 'r') as file:
+def attach_torrent_file_to_peer(peer_id, text_content):
+    with open(text_content, 'r') as file:
         text_content = file.read()
     
     result = peer_collection.update_one(
@@ -96,10 +96,8 @@ def is_peer_active(peer_id):
         print(f"Peer {peer_id} is not active.")
         return False
 
-def add_torrent(torrent_name, peer_ip, peer_port, file_path):
+def add_torrent(torrent_name, peer_ip, peer_port, text_content):
     torrent_id = str(uuid.uuid4())
-    with open(file_path, 'r') as file:
-        text_content = file.read()
     torrent_data = {
         "torrent_id": torrent_id,
         "torrent_name": torrent_name,

@@ -17,12 +17,12 @@ def add_torrent_api():
     torrent_name = data.get('torrent_name')
     peer_ip = data.get('peer_ip')
     peer_port = data.get('peer_port')
-    file_path = data.get('file_path')
+    text_content = data.get('text_content')
 
-    if not all([torrent_name, peer_ip, peer_port, file_path]):
+    if not all([torrent_name, peer_ip, peer_port, text_content]):
         return jsonify({"error": "Missing required fields"}), 400
 
-    torrent_id = add_torrent(torrent_name, peer_ip, peer_port, file_path)
+    torrent_id = add_torrent(torrent_name, peer_ip, peer_port, text_content)
     return jsonify(torrent_id), 201
 
 @torrent_api.route('/content', methods=['GET'])
