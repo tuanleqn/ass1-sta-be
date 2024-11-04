@@ -1,27 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MMT API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #f3f4f6;
+            color: #333;
+            line-height: 1.6;
+        }
+    
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+    
+        header p {
+            font-size: 1.2em;
+        }
+    
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+    
+        .section {
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+    
+        .api-section {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    
+        .api-docs h3 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: #4CAF50;
+        }
+    
+        .api-docs p {
+            font-size: 1em;
+            margin-bottom: 10px;
+            padding-left: 15px;
+        }
+    
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+    
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+    
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    
+        .fb-icon {
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Header -->
+
     <header>
-        <h1>Header</h1>
+        <h1>API Documentation for MMT Project</h1>
+        <p>Developed by Lê Đức Anh Tuấn - Student ID: 2213772</p>
     </header>
 
-    <!-- Main -->
-    <main>
-        <h1>Main</h1>
-    </main>
+    <div class="content">
+        <div class="section">
+            <h2>Project Overview</h2>
+            <p>This is an API for the Computer Networking Assignment of group MMT class L04.</p>
+        </div>
+    
+        <div class="section">
+            <h2>Technology Stack</h2>
+            <p><strong>Flask:</strong> Flask is a lightweight WSGI web application framework in Python. It’s designed to be
+                simple and flexible, making it ideal for small projects and RESTful APIs.</p>
+            <p><strong>MongoDB:</strong> MongoDB is a document-based NoSQL database known for its scalability and
+                flexibility. It stores data in JSON-like documents, providing rich, dynamic, and fast data management.</p>
+        </div>
+    
+        <div class="section api-section">
+            <h2>API Documentation</h2>
+            <div class="api-docs">
+                <h3>Peer API</h3>
+                <p><strong>POST /api/peer/add:</strong> Adds a new peer. Required data: <code>peer_name</code>,
+                    <code>password</code>, <code>status</code>, <code>ip_address</code>, <code>port</code>.
+                </p>
+                <p><strong>GET /api/peer/&lt;peer_id&gt;:</strong> Retrieves information about a peer using
+                    <code>peer_id</code>.
+                </p>
+                <p><strong>PUT /api/peer/&lt;peer_id&gt;/status:</strong> Updates the status of a peer. Required data:
+                    <code>status</code>.
+                </p>
+                <p><strong>DELETE /api/peer/&lt;peer_id&gt;:</strong> Deletes a peer using <code>peer_id</code>.</p>
+                <p><strong>GET /api/peer/:</strong> Retrieves a list of all peers.</p>
+                <p><strong>POST /api/peer/&lt;peer_id&gt;/attach:</strong> Attaches a file to a peer. Required data:
+                    <code>file_path</code>.
+                </p>
+                <p><strong>GET /api/peer/&lt;peer_id&gt;/content:</strong> Retrieves the attached file content of a peer.
+                </p>
+            </div>
+    
+            <div class="api-docs">
+                <h3>Torrent API</h3>
+                <p><strong>POST /api/torrent/add:</strong> Adds a new torrent. Required data: <code>torrent_name</code>,
+                    <code>peer_ip</code>, <code>peer_port</code>, <code>text_content</code>.
+                </p>
+                <p><strong>GET /api/torrent/content:</strong> Retrieves the content of all torrents.</p>
+                <p><strong>GET /api/torrent/delete:</strong> Deletes all torrents.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Connect with me:</p>
+        <a href="https://fb.com/tuanleqn" target="_blank"><img
+                src="https://img.icons8.com/ios-filled/50/4CAF50/facebook.png" alt="Facebook" class="fb-icon"></a>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <h1>Footer</h1>
-    </footer>
 </body>
-
 </html>
